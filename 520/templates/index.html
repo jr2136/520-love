@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>520 ❤️</title>
+    <style>
+    <style>
+
+body{
+    margin:0;
+    padding:0;
+    background:black;
+    color:white;
+    text-align:center;
+    overflow-x:hidden;
+    font-family:Arial;
+}
+
+.stars{
+    position:fixed;
+    width:100%;
+    height:100%;
+    top:0;
+    left:0;
+
+    background:url("https://www.transparenttextures.com/patterns/stardust.png");
+
+    animation:moveStars 60s linear infinite;
+
+    z-index:-1;
+}
+
+@keyframes moveStars{
+    from{
+        background-position:0 0;
+    }
+
+    to{
+        background-position:1000px 1000px;
+    }
+}
+
+h1{
+    font-size:60px;
+    color:pink;
+}
+
+p{
+    font-size:25px;
+}
+
+.photo{
+    width:300px;
+    border-radius:20px;
+    margin:20px;
+    box-shadow:0 0 20px pink;
+}
+
+</style>
+</head>
+
+<body>  
+
+    <div class="stars"></div>
+    <h1>❤️ Happy 520 ❤️</h1>
+    <div id="days"></div>
+   <h2 id="typing"></h2>
+
+    <p>
+        Even though we are far away,<br>
+        my heart still runs to you every day.
+    </p>
+
+    <img id="slide" class="photo">
+<audio id="bgm" loop>
+    <source src="{{ url_for('static', filename='music.mp3') }}" type="audio/mpeg">
+</audio>
+
+<script>
+
+document.body.addEventListener('click', function () {
+    document.getElementById('bgm').play();
+}, { once: true });
+
+
+// 我们认识多少天
+const startDate = new Date("2023-07-04");
+const today = new Date();
+
+const diffTime = today - startDate;
+const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+
+document.getElementById("days").innerHTML =
+"💖 Loving you for: " + diffDays + " days 💖";
+
+
+// 打字机
+const text =
+"I miss you a little more every single day...";
+
+let i = 0;
+
+function typing(){
+    if(i < text.length){
+        document.getElementById("typing").innerHTML += text.charAt(i);
+        i++;
+        setTimeout(typing, 100);
+    }
+}
+
+typing();
+
+
+// 图片轮播
+const photos = [
+    "{{ url_for('static', filename='photo 1.jpg') }}",
+    "{{ url_for('static', filename='photo 2.jpg') }}",
+    "{{ url_for('static', filename='photo 3.jpg') }}",
+    "{{ url_for('static', filename='photo 4.jpg') }}",
+    "{{ url_for('static', filename='photo 5.jpg') }}",
+    "{{ url_for('static', filename='photo 6.jpg') }}",
+    "{{ url_for('static', filename='photo 7.jpg') }}"
+];
+
+let current = 0;
+
+function changePhoto(){
+    document.getElementById("slide").src = photos[current];
+
+    current++;
+
+    if(current >= photos.length){
+        current = 0;
+    }
+}
+
+changePhoto();
+
+setInterval(changePhoto, 3000);
+</script>
+
+</body>
+</html>
