@@ -59,6 +59,14 @@ p{
 </head>
 
 <body>  
+    <div id="lockscreen">
+    <h1>🔒 Enter Password 🔒</h1>
+    <input type="password" id="password" placeholder="Password">
+    <button onclick="checkPassword()">Enter</button>
+    <p id="wrong"></p>
+</div>
+
+<div id="content" style="display:none;">
 
     <div class="stars"></div>
     <h1>❤️ Happy 520 ❤️</h1>
@@ -137,6 +145,19 @@ changePhoto();
 
 setInterval(changePhoto, 3000);
 </script>
+</div>
 
+<script>
+function checkPassword() {
+    let pass = document.getElementById("password").value;
+
+    if(pass === "01052009"){
+        document.getElementById("lockscreen").style.display = "none";
+        document.getElementById("content").style.display = "block";
+    } else {
+        document.getElementById("wrong").innerHTML = "Wrong Password 💔";
+    }
+}
+</script>
 </body>
 </html>
